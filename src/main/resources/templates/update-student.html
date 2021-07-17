@@ -1,42 +1,126 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="includes/base :: head">
+    <title>Actualizar estudiante</title>
+  </head>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Update User</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-</head>
+  <body>
+    <!-- NAVBAR -->
+    <nav th:replace="includes/base :: navbar"></nav>
 
-<body>
+    <!-- CONTENT -->
     <div class="container my-5">
-        <h3> Update Student</h3>
-        <div class="card">
-            <div class="card-body">
-                <div class="col-md-8">
-                    <form action="#" th:action="@{/students/update/{id}(id=${student.id})}" th:object="${student}" method="post">
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="name" class="col-form-label">Name</label> <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name"> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
-                            </div>
-                            <div class="form-group col-md-8">
-                                <label for="email" class="col-form-label">Email</label> <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email"> <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-                            </div>
-                            <div class="form-group col-md-8">
-                                <label for="phoneNo" class="col-form-label">Phone No</label> <input type="text" th:field="*{phoneNo}" class="form-control" id="phoneNo" placeholder="phoneNo"> <span th:if="${#fields.hasErrors('phoneNo')}" th:errors="phoneNo" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group col-md-8">
-                                <input type="submit" class="btn btn-primary" value="Update Student">
-                            </div>
-                        </div>
-                    </form>
+      <h3>Actualizar estudiante</h3>
+      <div class="card">
+        <div class="card-body">
+          <div class="col-md-8">
+            <form
+              action="#"
+              th:action="@{/students/update/{id}(id=${student.id})}"
+              th:object="${student}"
+              method="post"
+            >
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name" class="col-form-label">Nombre</label>
+                  <input
+                    type="text"
+                    th:field="*{name}"
+                    class="form-control"
+                    id="name"
+                    placeholder="Name"
+                    required
+                  />
+                  <span
+                    th:if="${#fields.hasErrors('name')}"
+                    th:errors="*{name}"
+                    class="text-danger"
+                  ></span>
                 </div>
-            </div>
-        </div>
-    </div>
-</body>
 
+                <div class="form-group col-md-6">
+                  <label for="name" class="col-form-label">Apellido</label>
+                  <input
+                    type="text"
+                    th:field="*{lastName}"
+                    class="form-control"
+                    id="lastName"
+                    placeholder="lastName"
+                    required
+                  />
+                  <span
+                    th:if="${#fields.hasErrors('lastName')}"
+                    th:errors="*{lastName}"
+                    class="text-danger"
+                  ></span>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label for="email" class="col-form-label">Email</label>
+                  <input
+                    type="text"
+                    th:field="*{email}"
+                    class="form-control"
+                    id="email"
+                    placeholder="Email"
+                    required
+                  />
+                  <span
+                    th:if="${#fields.hasErrors('email')}"
+                    th:errors="*{email}"
+                    class="text-danger"
+                  ></span>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label for="phoneNo" class="col-form-label">Teléfono</label>
+                  <input
+                    type="text"
+                    th:field="*{phoneNo}"
+                    class="form-control"
+                    id="phoneNo"
+                    placeholder="phoneNo"
+                    required
+                  />
+                  <span
+                    th:if="${#fields.hasErrors('phoneNo')}"
+                    th:errors="phoneNo"
+                    class="text-danger"
+                  ></span>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <label for="phoneNo" class="col-form-label">Curso</label>
+                  <input
+                    type="text"
+                    th:field="*{course}"
+                    class="form-control"
+                    id="course"
+                    placeholder="course"
+                    required
+                  />
+                  <span
+                    th:if="${#fields.hasErrors('course')}"
+                    th:errors="course"
+                    class="text-danger"
+                  ></span>
+                </div>
+
+                <div class="form-group col-md-8">
+                  <input
+                    type="submit"
+                    class="btn btn-primary"
+                    value="Actualizar"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+	<!-- FOOTER -->
+	<footer th:replace="includes/base :: footer"></footer>
+  </body>
+  <script th:replace="includes/base :: btrapjs"></script>
 </html>
