@@ -15,19 +15,19 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Column(name = "name")
+	@Column(name = "name", nullable=false, length=100)
 	private String name;
 	
-	@Column(name = "last_name")
+	@Column(name = "last_name", nullable=false, length=100)
 	private String lastName;
 	
-	@Column(name = "email")
+	@Column(name = "email", nullable=false, length=200)
 	private String email;
 	
 	@Column(name = "phone_no")
 	private long phoneNo;
 	
-	@Column(name = "course")
+	@Column(name = "course", nullable=false, length=4)
 	private String course;
 	
 	

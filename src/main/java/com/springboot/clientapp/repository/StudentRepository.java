@@ -9,5 +9,5 @@ import com.springboot.clientapp.entity.Student;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long>{
-	List<Student> findByName(String name);
+	List<Student> findByLastName(String lastName);
 }
