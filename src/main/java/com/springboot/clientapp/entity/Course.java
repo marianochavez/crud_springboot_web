@@ -20,7 +20,7 @@ public class Course {
 	private long id;
 
 	@Column(name = "number",unique = true, nullable = false, length = 4)
-	private Integer number;
+	private int number;
 
 	@Column(name = "description", nullable = false, length = 200)
 	private String description;
@@ -33,7 +33,7 @@ public class Course {
 		super();
 	}
 
-	public Course(Integer number, String description, List<Student> students) {
+	public Course(int number, String description, List<Student> students) {
 		super();
 		this.number = number;
 		this.description = description;
@@ -48,11 +48,11 @@ public class Course {
 		this.id = id;
 	}
 
-	public Integer getNumber() {
+	public int getNumber() {
 		return number;
 	}
 
-	public void setNumber(Integer number) {
+	public void setNumber(int number) {
 		this.number = number;
 	}
 

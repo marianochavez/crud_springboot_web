@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="includes/base :: head"></head>
+  <head>
+    <title>Cursos</title>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav th:replace="includes/base :: navbar"></nav>
+    <!-- CONTENT -->
+    <div class="container my-5 text-center">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-danger" th:text="${message}"></h2>
+          <a class="btn btn-primary my-5" th:href="@{/courses/list}">Volver</a>
+        </div>
+      </div>
+    </div>
+    <!-- FOOTER -->
+    <footer th:replace="includes/base :: footer"></footer>
+  </body>
+  <script th:replace="includes/base :: btrapjs"></script>
+</html>

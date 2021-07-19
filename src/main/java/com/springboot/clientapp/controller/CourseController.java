@@ -28,41 +28,40 @@ public class CourseController {
 
 	@Autowired
 	private CourseRepository courseRepository;
-	
+
 	@GetMapping("list")
-	public String courses(Model model, @RequestParam("page") Optional<Integer> page) {
-		
+	public String courses( @RequestParam("page") Optional<Integer> page,Model model) {
+
 		int currentPage = page.orElse(1);
-		
+
 		model.addAttribute("currentPage", currentPage);
-		
+
 		int pageSize = 6;
-		
-		Pageable paging = PageRequest.of(currentPage-1, pageSize);
-		
+
+		Pageable paging = PageRequest.of(currentPage - 1, pageSize);
+
 		Page<Course> coursePage = this.courseRepository.findAll(paging);
-		
-		model.addAttribute("courses",coursePage);
-		
-		
+
+		model.addAttribute("courses", coursePage);
+
 		int totalPages = coursePage.getTotalPages();
 		model.addAttribute("totalPages", totalPages);
-		
+
 		if (totalPages > 0) {
 
 			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 
 		}
-		
+
 		return "course/list-course";
 	}
-	
+
 	@GetMapping("showForm")
 	public String showCourseForm(Course course) {
 		return "course/add-course";
 	}
-	
+
 	@PostMapping("add")
 	public String addCourse(@Validated Course course, BindingResult result, Model model) {
 		if (result.hasErrors()) {
@@ -72,7 +71,7 @@ public class CourseController {
 		this.courseRepository.save(course);
 		return "redirect:list";
 	}
-	
+
 	@GetMapping("edit/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
 		Course course = this.courseRepository.findById(id)
@@ -81,7 +80,7 @@ public class CourseController {
 		model.addAttribute("course", course);
 		return "course/update-course";
 	}
-	
+
 	@PostMapping("update/{id}")
 	public String updateCourse(@PathVariable("id") long id, @Validated Course course, BindingResult result,
 			Model model) {
@@ -97,16 +96,28 @@ public class CourseController {
 		model.addAttribute("courses", this.courseRepository.findAll());
 		return "redirect:/courses/list";
 	}
-	
+
 	@GetMapping("delete/{id}")
 	public String deleteCourse(@PathVariable("id") long id, Model model) {
 
-		Course course = this.courseRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Estudiante no válido con id : " + id));
+		if (courseRepository.findById(id).isPresent()) {
 
-		this.courseRepository.delete(course);
-		model.addAttribute("courses", this.courseRepository.findAll());
+			if (courseRepository.findById(id).get().getStudents().size() == 0) {
+
+				this.courseRepository.deleteById(id);
+
+			} else {
+				String message = "No se puede eliminar el curso " + id + ", contiene estudiantes inscriptos.";
+				model.addAttribute("message",message);
+				return "course/error-course";
+			}
+		} else {
+			String message = "No existe un curso con el id: " + id;
+			model.addAttribute("message",message);
+			return "course/error-course";
+
+		}
+		
 		return "redirect:/courses/list";
-
 	}
 }

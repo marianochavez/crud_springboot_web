@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,27 +34,23 @@ public class StudentController {
 	public String students(Model model, @RequestParam("page") Optional<Integer> page) {
 
 		int currentPage = page.orElse(1);
-		
-		model.addAttribute("currentPage",currentPage);
-		
+
 		int pageSize = 6;
 
-		Pageable paging = PageRequest.of(currentPage-1, pageSize);
+		Pageable paging = PageRequest.of(currentPage - 1, pageSize);
 
 		Page<Student> studentPage = this.studentRepository.findAll(paging);
 
-		model.addAttribute("students", studentPage);
-		
 		int totalPages = studentPage.getTotalPages();
+
+		model.addAttribute("students", studentPage);
+		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPages", totalPages);
 
 		if (totalPages > 0) {
-
 			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
-
 		}
-
 		return "student/list-student";
 	}
 
@@ -64,7 +61,14 @@ public class StudentController {
 
 	@PostMapping("add")
 	public String addStudent(@Validated Student student, BindingResult result, Model model) {
+
 		if (result.hasErrors()) {
+			return "student/add-student";
+		}
+
+		if (this.studentRepository.findByEmail(student.getEmail()).isPresent()) {
+			FieldError error = new FieldError("emailerr", "email", "El email ya se encuentra en uso.");
+			result.addError(error);
 			return "student/add-student";
 		}
 
@@ -75,7 +79,7 @@ public class StudentController {
 	@GetMapping("edit/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
 		Student student = this.studentRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid student id : " + id));
+				.orElseThrow(() -> new IllegalArgumentException("Estudiante no válido con id : " + id));
 
 		model.addAttribute("student", student);
 		return "student/update-student";
@@ -84,11 +88,23 @@ public class StudentController {
 	@PostMapping("update/{id}")
 	public String updateStudent(@PathVariable("id") long id, @Validated Student student, BindingResult result,
 			Model model) {
+		
 		if (result.hasErrors()) {
 			student.setId(id);
 			return "student/update-student";
 		}
-
+		
+		String email =  student.getEmail();
+		String emailbase = this.studentRepository.findById(id).get().getEmail();
+		
+		if(!email.equals(emailbase)) {
+			if(this.studentRepository.findByEmail(student.getEmail()).isPresent()) {
+				FieldError error = new FieldError("emailerr","email","El email ya se encuentra en uso.");
+				result.addError(error);
+				return "student/update-student";
+			}
+		}
+		
 		// update student
 		studentRepository.save(student);
 
@@ -104,6 +120,7 @@ public class StudentController {
 				.orElseThrow(() -> new IllegalArgumentException("Estudiante no válido con id : " + id));
 
 		this.studentRepository.delete(student);
+		
 		model.addAttribute("students", this.studentRepository.findAll());
 		return "redirect:/students/list";
 

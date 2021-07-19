@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "students")
@@ -21,12 +23,16 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@NotNull(message = "Ingrese un nombre.")
 	@Column(name = "first_name", nullable = false, length = 100)
 	private String firstName;
 
+	@NotNull(message = "Ingrese un apellido.")
 	@Column(name = "last_name", nullable = false, length = 100)
 	private String lastName;
 
+	@NotNull(message = "Ingrese un email.")
+	@Email(message = "Ingrese un email válido.")
 	@Column(name = "email", unique = true, nullable = false, length = 200)
 	private String email;
 
