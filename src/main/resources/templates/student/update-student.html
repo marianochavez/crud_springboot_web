@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:include="includes/base :: head">
-    <title>Nuevo Usuario</title>
-  </head>
+<head th:include="includes/base :: head"></head>
+<head><title>Actualizar Estudiante</title></head>
 
   <body>
     <!-- NAVBAR -->
     <nav th:replace="includes/base :: navbar"></nav>
+
     <!-- CONTENT -->
     <div class="container my-5">
-      <h3>Nuevo Usuario</h3>
+      <h3>Actualizar estudiante</h3>
       <div class="card">
         <div class="card-body">
-          <div class="col-md-10">
+          <div class="col-md-8">
             <form
               action="#"
-              th:action="@{/students/add}"
+              th:action="@{/students/update/{id}(id=${student.id})}"
               th:object="${student}"
               method="post"
             >
               <div class="row">
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-6">
                   <label for="name" class="col-form-label">Nombre</label>
                   <input
                     type="text"
-                    th:field="*{name}"
+                    th:field="*{firstName}"
                     class="form-control"
-                    id="name"
-                    placeholder="Nombre"
+                    id="firstName"
+                    placeholder="Name"
                     required
                   />
                   <span
-                    th:if="${#fields.hasErrors('name')}"
-                    th:errors="*{name}"
+                    th:if="${#fields.hasErrors('firstName')}"
+                    th:errors="*{firstName}"
                     class="text-danger"
                   ></span>
                 </div>
 
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-6">
                   <label for="name" class="col-form-label">Apellido</label>
                   <input
                     type="text"
                     th:field="*{lastName}"
                     class="form-control"
                     id="lastName"
-                    placeholder="Apellido"
+                    placeholder="lastName"
                     required
                   />
                   <span
@@ -61,7 +61,7 @@
                     th:field="*{email}"
                     class="form-control"
                     id="email"
-                    placeholder="example@email.com"
+                    placeholder="Email"
                     required
                   />
                   <span
@@ -78,12 +78,12 @@
                     th:field="*{phoneNo}"
                     class="form-control"
                     id="phoneNo"
-                    placeholder="542619999999"
+                    placeholder="phoneNo"
                     required
                   />
                   <span
                     th:if="${#fields.hasErrors('phoneNo')}"
-                    th:errors="*{phoneNo}"
+                    th:errors="phoneNo"
                     class="text-danger"
                   ></span>
                 </div>
@@ -92,21 +92,25 @@
                   <label for="phoneNo" class="col-form-label">Curso</label>
                   <input
                     type="text"
-                    th:field="*{course}"
+                    th:field="*{courses}"
                     class="form-control"
-                    id="course"
-                    placeholder="Curso"
+                    id="courses"
+                    placeholder="course"
                     required
                   />
                   <span
-                    th:if="${#fields.hasErrors('course')}"
-                    th:errors="*{course}"
+                    th:if="${#fields.hasErrors('courses')}"
+                    th:errors="courses"
                     class="text-danger"
                   ></span>
                 </div>
 
-                <div class="col-md-6 text-center">
-                  <input type="submit" class="btn btn-primary mt-3" value="Crear" />
+                <div class="form-group col-md-8">
+                  <input
+                    type="submit"
+                    class="btn btn-primary"
+                    value="Actualizar"
+                  />
                 </div>
               </div>
             </form>

@@ -46,9 +46,12 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" th:href="@{/courses/list}">Cursos</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/students/list}">Estudiantes</a>
+            </li>
+            <!-- <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -67,16 +70,7 @@
                   <a class="dropdown-item" href="#">Something else here</a>
                 </li>
               </ul>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link disabled"
-                href="#"
-                tabindex="-1"
-                aria-disabled="true"
-                >Disabled</a
-              >
-            </li>
+            </li> -->
           </ul>
           <form class="d-flex">
             <input
@@ -86,7 +80,7 @@
               aria-label="Search"
             />
             <button class="btn btn-outline-success" type="submit">
-              Search
+              Buscar
             </button>
           </form>
         </div>

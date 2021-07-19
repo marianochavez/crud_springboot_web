@@ -33,6 +33,9 @@ public class StudentController {
 	public String students(Model model, @RequestParam("page") Optional<Integer> page) {
 
 		int currentPage = page.orElse(1);
+		
+		model.addAttribute("currentPage",currentPage);
+		
 		int pageSize = 6;
 
 		Pageable paging = PageRequest.of(currentPage-1, pageSize);
@@ -40,8 +43,6 @@ public class StudentController {
 		Page<Student> studentPage = this.studentRepository.findAll(paging);
 
 		model.addAttribute("students", studentPage);
-		
-		model.addAttribute("currentPage",currentPage);
 		
 		int totalPages = studentPage.getTotalPages();
 		model.addAttribute("totalPages", totalPages);
@@ -53,18 +54,18 @@ public class StudentController {
 
 		}
 
-		return "index";
+		return "student/list-student";
 	}
 
 	@GetMapping("showForm")
 	public String showStudentForm(Student student) {
-		return "add-student";
+		return "student/add-student";
 	}
 
 	@PostMapping("add")
 	public String addStudent(@Validated Student student, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "add-student";
+			return "student/add-student";
 		}
 
 		this.studentRepository.save(student);
@@ -77,7 +78,7 @@ public class StudentController {
 				.orElseThrow(() -> new IllegalArgumentException("Invalid student id : " + id));
 
 		model.addAttribute("student", student);
-		return "update-student";
+		return "student/update-student";
 	}
 
 	@PostMapping("update/{id}")
@@ -85,7 +86,7 @@ public class StudentController {
 			Model model) {
 		if (result.hasErrors()) {
 			student.setId(id);
-			return "update-student";
+			return "student/update-student";
 		}
 
 		// update student
@@ -93,14 +94,14 @@ public class StudentController {
 
 		// get all students ( with update)
 		model.addAttribute("students", this.studentRepository.findAll());
-		return "index";
+		return "redirect:/students/list";
 	}
 
 	@GetMapping("delete/{id}")
 	public String deleteStudent(@PathVariable("id") long id, Model model) {
 
 		Student student = this.studentRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid student id : " + id));
+				.orElseThrow(() -> new IllegalArgumentException("Estudiante no válido con id : " + id));
 
 		this.studentRepository.delete(student);
 		model.addAttribute("students", this.studentRepository.findAll());
