@@ -9,6 +9,6 @@ public class IndexController {
 
 	@GetMapping("/")
 	public String index() {
-		return "redirect:students/list";
+		return "index";
 	}
 }

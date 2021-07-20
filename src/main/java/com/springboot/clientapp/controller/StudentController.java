@@ -1,5 +1,6 @@
 package com.springboot.clientapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.springboot.clientapp.entity.Course;
 import com.springboot.clientapp.entity.Student;
+import com.springboot.clientapp.repository.CourseRepository;
 import com.springboot.clientapp.repository.StudentRepository;
 
 @Controller
@@ -29,6 +32,9 @@ public class StudentController {
 
 	@Autowired
 	private StudentRepository studentRepository;
+	
+	@Autowired
+	private CourseRepository courseRepository;
 
 	@GetMapping("list")
 	public String students(Model model, @RequestParam("page") Optional<Integer> page) {
@@ -55,7 +61,13 @@ public class StudentController {
 	}
 
 	@GetMapping("showForm")
-	public String showStudentForm(Student student) {
+	public String showStudentForm(Student student, Model model) {
+		List<Course> course = new ArrayList<>();
+		model.addAttribute("course",course);
+		
+		List<Course> courses = this.courseRepository.findAll();
+		model.addAttribute("courses",courses);
+		
 		return "student/add-student";
 	}
 
@@ -72,7 +84,9 @@ public class StudentController {
 			return "student/add-student";
 		}
 
+		
 		this.studentRepository.save(student);
+		
 		return "redirect:list";
 	}
 
@@ -82,6 +96,13 @@ public class StudentController {
 				.orElseThrow(() -> new IllegalArgumentException("Estudiante no válido con id : " + id));
 
 		model.addAttribute("student", student);
+		
+		List<Course> course = new ArrayList<>();
+		model.addAttribute("course",course);
+		
+		List<Course> courses = this.courseRepository.findAll();
+		model.addAttribute("courses",courses);
+		
 		return "student/update-student";
 	}
 

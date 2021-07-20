@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "courses")
@@ -19,6 +21,8 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@Min(value = 1, message = "El numero no puede ser menor a 1.")
+	@Max(value = 9999, message = "El numero no puede ser mayor a 9999.")
 	@Column(name = "number",unique = true, nullable = false, length = 4)
 	private int number;
 

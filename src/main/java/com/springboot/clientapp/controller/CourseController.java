@@ -101,13 +101,15 @@ public class CourseController {
 	public String deleteCourse(@PathVariable("id") long id, Model model) {
 
 		if (courseRepository.findById(id).isPresent()) {
+			
+			Optional<Course> course = this.courseRepository.findById(id);
 
 			if (courseRepository.findById(id).get().getStudents().size() == 0) {
 
 				this.courseRepository.deleteById(id);
 
 			} else {
-				String message = "No se puede eliminar el curso " + id + ", contiene estudiantes inscriptos.";
+				String message = "No se puede eliminar el curso #" + id + " - " + course.get().getNumber() + ": " + course.get().getDescription() +", contiene estudiantes inscriptos.";
 				model.addAttribute("message",message);
 				return "course/error-course";
 			}
