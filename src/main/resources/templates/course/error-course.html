@@ -7,9 +7,12 @@
 
   <body>
     <!-- NAVBAR -->
-    <nav th:replace="includes/base :: navbar"></nav>
+    <div class="table-info">
+      <th:block th:include="includes/base :: header"></th:block>
+    </div>
+
     <!-- CONTENT -->
-    <div class="container my-5 text-center">
+    <div class="container my-5 text-center" style="padding-top: 150px;">
       <div class="card">
         <div class="card-body">
           <h2 class="text-danger" th:text="${message}"></h2>
@@ -19,6 +22,7 @@
     </div>
     <!-- FOOTER -->
     <footer th:replace="includes/base :: footer"></footer>
+    
+    <th:block th:include="includes/base :: assets"></th:block>
   </body>
-  <script th:replace="includes/base :: btrapjs"></script>
 </html>

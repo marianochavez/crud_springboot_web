@@ -5,10 +5,12 @@
 
   <body>
     <!-- NAVBAR -->
-    <nav th:replace="includes/base :: navbar"></nav>
+    <div class="table-info">
+      <th:block th:include="includes/base :: header"></th:block>
+    </div>
 
     <!-- CONTENT -->
-    <div class="container my-5">
+    <div class="container my-5" style="padding-top: 150px;">
       <h3>Actualizar estudiante</h3>
       <div class="card">
         <div class="card-body">
@@ -111,8 +113,9 @@
         </div>
       </div>
     </div>
-	<!-- FOOTER -->
-	<footer th:replace="includes/base :: footer"></footer>
+    <!-- FOOTER -->
+    <footer th:replace="includes/base :: footer"></footer>
+    
+    <th:block th:include="includes/base :: assets"></th:block>
   </body>
-  <script th:replace="includes/base :: btrapjs"></script>
 </html>

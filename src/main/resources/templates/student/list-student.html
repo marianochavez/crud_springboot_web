@@ -1,89 +1,91 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:include="includes/base :: head">
-  </head>
-  <head><title>Estudiantes</title></head>
-
+  <head th:include="includes/base :: head"></head>
+  <head><title>Progrademia | Académia de Programacion</title></head>
   <body>
     <!-- NAVBAR -->
-    <nav th:replace="includes/base :: navbar"></nav>
+    <div class="table-info">
+      <th:block th:include="includes/base :: header"></th:block>
+    </div>
+
     <!-- CONTENT -->
-    <div class="container my-2">
-      <div class="card">
-        <div class="card-body">
-          <div class="row" style="float: right;">
-            <a href="/students/showForm" class="btn btn-success"><i class="fas fa-user-plus ml-2"> Agregar Estudiante</i></a>
-          </div>
-          <div th:switch="${students}" class="container my-5">
-            <div class="text-center">
-              <h2 th:case="null">No hay estudiantes!</h2>
-              <div th:case="*">
-                <table class="table table-striped table-responsive">
-                  <thead>
-                    <tr>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>Email</th>
-                      <th>Telefono</th>
-                      <th>Cursos</th>
-                      <th>Editar</th>
-                      <th>Eliminar</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr th:each="student : ${students}">
-                      <td th:text="${student.firstName}"></td>
-                      <td th:text="${student.lastName}"></td>
-                      <td th:text="${student.email}"></td>
-                      <td th:text="${student.phoneNo}"></td>
-                      <td>
-                        <div class="row" th:each="course: ${student.getCourses()}">
-                          <p th:text="${course.description}"></p>
-                        </div>
-                      </td>
-                      <td>
-                        <a
-                          th:href="@{/students/edit/{id}(id=${student.id})}"
-                          class="btn btn-primary"
-                          ><i class="fas fa-user-edit ml-2"></i
-                        ></a>
-                      </td>
-                      <td>
-                        <a
-                          th:href="@{/students/delete/{id}(id=${student.id})}"
-                          class="btn btn-danger"
-                          ><i class="fas fa-user-times ml-2"></i
-                        ></a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="row" style="float: right;">
-                    <nav>
-                      <ul class="pagination">
-                        <li class="page-item" th:classappend="${currentPage==1} ? disabled">
-                          <a class="page-link" th:href="@{/students/list(page=${currentPage-1})}">Anterior</a>
-                        </li>
-                        <li class="page-item" th:classappend="${pageNumber==currentPage} ? active" th:if="${totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
-                          <a class="page-link" th:href="@{/students/list(page=${pageNumber})}" th:text=${pageNumber}></a>
-                        </li>
-                        <li class="page-item" th:classappend="${currentPage==totalPages} ? disabled">
-                          <a class="page-link" th:href="@{/students/list(page=${currentPage+1})}">Siguiente</a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-                <div >
-              </div>
+    <!-- TODO modify style -->
+      <div class="container my-2" style="padding-top: 150px;margin-bottom: 300px;">
+        <div class="card">
+          <div class="card-body">
+            <div class="row" style="float: right;">
+              <a href="/students/showForm" class="btn btn-success"><i class="fas fa-user-plus ml-2"> Agregar Estudiante</i></a>
+            </div>
+            <div th:switch="${students}" class="container my-5">
+              <div class="text-center">
+                <h2 th:case="null">No hay estudiantes!</h2>
+                <div th:case="*">
+                  <table class="table table-striped table-responsive">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th>Cursos</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="student : ${students}">
+                        <td th:text="${student.firstName}"></td>
+                        <td th:text="${student.lastName}"></td>
+                        <td th:text="${student.email}"></td>
+                        <td th:text="${student.phoneNo}"></td>
+                        <td>
+                          <div class="row" th:each="course: ${student.getCourses()}">
+                            <p th:text="${course.description}"></p>
+                          </div>
+                        </td>
+                        <td>
+                          <a
+                            th:href="@{/students/edit/{id}(id=${student.id})}"
+                            class="btn btn-primary"
+                            ><i class="fas fa-user-edit ml-2"></i
+                          ></a>
+                        </td>
+                        <td>
+                          <a
+                            th:href="@{/students/delete/{id}(id=${student.id})}"
+                            class="btn btn-danger"
+                            ><i class="fas fa-user-times ml-2"></i
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="row" style="float: right;">
+                      <nav>
+                        <ul class="pagination">
+                          <li class="page-item" th:classappend="${currentPage == 1} ? disabled">
+                            <a class="page-link" th:href="@{/students/list(page=${currentPage-1})}">Anterior</a>
+                          </li>
+                          <li class="page-item" th:classappend="${pageNumber==currentPage} ? active" th:if="${totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
+                            <a class="page-link" th:href="@{/students/list(page=${pageNumber})}" th:text=${pageNumber}></a>
+                          </li>
+                          <li class="page-item" th:classappend="${currentPage==totalPages} ? disabled">
+                            <a class="page-link" th:href="@{/students/list(page=${currentPage+1})}">Siguiente</a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
+                  <div >
+                </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-	<!-- FOOTER -->
-	<footer th:replace="includes/base :: footer"></footer>
+    <!-- FOOTER -->
+    <footer th:replace="includes/base :: footer"></footer>
+    
+    <th:block th:include="includes/base :: assets"></th:block>
   </body>
-  <script th:replace="includes/base :: btrapjs"></script>
 </html>
