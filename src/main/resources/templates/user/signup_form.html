@@ -45,6 +45,20 @@
                             required minlength="2" maxlength="20" />
                 </div>
             </div>
+            
+            <div class="form-group col-md-8">
+                  <label for="course" class="col-form-label">Admin</label>
+                    <select class="form-control" th:field="*{role}" id="role" size="4" multiple>
+                        <!-- <option th:each="role : ${roles}"
+                                th:value="${role}"
+                                th:text="${role}">
+						</option> -->
+						<option th:each="role : ${T(com.springboot.clientapp.entity.Role).values()}"
+					            th:value="${role}"
+					            th:text="${role}">
+					    </option>
+                    </select>
+                </div>
              
             <div>
                 <button type="submit" class="btn btn-primary">Sign Up</button>

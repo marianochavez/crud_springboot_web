@@ -23,7 +23,7 @@ import com.springboot.clientapp.entity.Course;
 import com.springboot.clientapp.repository.CourseRepository;
 
 @Controller
-@RequestMapping("/courses/")
+@RequestMapping("/admin/courses/")
 public class CourseController {
 
 	@Autowired

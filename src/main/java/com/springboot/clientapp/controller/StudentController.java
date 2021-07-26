@@ -27,7 +27,7 @@ import com.springboot.clientapp.repository.CourseRepository;
 import com.springboot.clientapp.repository.StudentRepository;
 
 @Controller
-@RequestMapping("/students/")
+@RequestMapping("/admin/students/")
 public class StudentController {
 
 	@Autowired

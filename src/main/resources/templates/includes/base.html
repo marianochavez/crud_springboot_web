@@ -32,16 +32,25 @@
                         <div class="logo"></div>
                     </a>
                 </div>
+                
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a th:href="@{/}" class="nav-link">Home</a></li>
-                        <li><a th:href="@{/courses/list}" class="nav-link" >Cursos</a></li>
-                        <li><a th:href="@{/students/list}" class="nav-link" >Estudiantes</a></li>
-                        <li><a th:href="@{/}" class="scroll-link" data-id="blog">Blog</a></li>
-                        <li><a th:href="@{/}" class="scroll-link" data-id="contact">Contact Us</a></li>
-                        <li><a th:href="@{/login}" class="nav-link" >Login</a></li>
-                        <li><a th:href="@{/register}" class="nav-link" >Register</a></li>
-                        <li><a th:href="@{/users}" class="nav-link" >Users</a></li>
+                        
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item dropdown">
+					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          Admin
+					        </a>
+	                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                        	<a th:href="@{/admin/courses/list}" class="dropdown-item" >Cursos</a>
+	                        	<a th:href="@{/admin/students/list}" class="dropdown-item" >Estudiantes</a>
+	                        	<a th:href="@{/admin/users/list}" class="dropdown-item" >Usuarios</a>
+	                        </div>
+                        </li>
+                        
+                        <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}" class="nav-link" >Ingresar</a></li>
+                        <li sec:authorize="!isAuthenticated()"><a th:href="@{/register}" class="nav-link" >Registrarse</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="nav-link" >Desconectarse</a></li>
                     </ul>
                 </div>
             </nav>
