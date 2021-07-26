@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="includes/base :: head"></head>
-<head><title>Actualizar Curso</title></head>
+<head>
+  	<meta charset="utf-8">
+  	<title>Progrademia | Academia de Programacion</title>
+  </head>
   <body>
     <!-- NAVBAR -->
     <div class="table-info">
@@ -16,7 +19,7 @@
           <div class="col-md-8">
             <form
               action="#"
-              th:action="@{/courses/update/{id}(id=${course.id})}"
+              th:action="@{/admin/courses/update/{id}(id=${course.id})}"
               th:object="${course}"
               method="post"
             >
@@ -28,12 +31,29 @@
                     th:field="*{number}"
                     class="form-control"
                     id="number"
-                    placeholder="Número"
+                    placeholder="NÃºmero"
                     required
                   />
                   <span
                     th:if="${#fields.hasErrors('number')}"
                     th:errors="*{number}"
+                    class="text-danger"
+                  ></span>
+                </div>
+                
+                <div class="form-group col-md-6">
+                  <label for="name" class="col-form-label">Título</label>
+                  <input
+                    type="text"
+                    th:field="*{title}"
+                    class="form-control"
+                    id="title"
+                    placeholder="Título"
+                    required
+                  />
+                  <span
+                    th:if="${#fields.hasErrors('title')}"
+                    th:errors="*{title}"
                     class="text-danger"
                   ></span>
                 </div>
@@ -45,7 +65,7 @@
                     th:field="*{description}"
                     class="form-control"
                     id="description"
-                    placeholder="Descripción"
+                    placeholder="DescripciÃ³n"
                     required
                   />
                   <span

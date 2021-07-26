@@ -11,7 +11,7 @@
     <th:block th:include="includes/base :: header"></th:block>
    </div>
    <!-- CONTENT -->
-   <div style="padding-top: 150px;margin-bottom: 300px;">
+   <div class="text-center" style="padding-top: 150px;margin-bottom: 300px;">
         <form name="f" th:action="@{/login}" method="post">               
             <fieldset>
                 <legend>Inicie sesión</legend>
@@ -23,7 +23,7 @@
                 </div>
                 
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email"/>      
+                <input type="email" id="email" name="email"/> <br>     
                   
                 <label for="password">Contraseña</label>
                 <input type="password" id="password" name="password"/>    

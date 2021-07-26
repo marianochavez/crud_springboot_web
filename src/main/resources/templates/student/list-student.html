@@ -17,7 +17,7 @@
         <div class="card">
           <div class="card-body">
             <div class="row" style="float: right;">
-              <a href="/students/showForm" class="btn btn-success"><i class="fas fa-user-plus ml-2"> Agregar Estudiante</i></a>
+              <a th:href="@{/admin/students/showForm}" class="btn btn-success"><i class="fas fa-user-plus ml-2"> Agregar Estudiante</i></a>
             </div>
             <div th:switch="${students}" class="container my-5">
               <div class="text-center">
@@ -45,19 +45,19 @@
                         <td th:text="${student.phoneNo}"></td>
                         <td>
                           <div class="row" th:each="course: ${student.getCourses()}">
-                            <p th:text="${course.description}"></p>
+                            <p th:text="${course.number}"></p>
                           </div>
                         </td>
                         <td>
                           <a
-                            th:href="@{/students/edit/{id}(id=${student.id})}"
+                            th:href="@{/admin/students/edit/{id}(id=${student.id})}"
                             class="btn btn-primary"
                             ><i class="fas fa-user-edit ml-2"></i
                           ></a>
                         </td>
                         <td>
                           <a
-                            th:href="@{/students/delete/{id}(id=${student.id})}"
+                            th:href="@{/admin/students/delete/{id}(id=${student.id})}"
                             class="btn btn-danger"
                             ><i class="fas fa-user-times ml-2"></i
                           ></a>
@@ -69,13 +69,13 @@
                       <nav>
                         <ul class="pagination">
                           <li class="page-item" th:classappend="${currentPage == 1} ? disabled">
-                            <a class="page-link" th:href="@{/students/list(page=${currentPage-1})}">Anterior</a>
+                            <a class="page-link" th:href="@{/admin/students/list(page=${currentPage-1})}">Anterior</a>
                           </li>
                           <li class="page-item" th:classappend="${pageNumber==currentPage} ? active" th:if="${totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
-                            <a class="page-link" th:href="@{/students/list(page=${pageNumber})}" th:text=${pageNumber}></a>
+                            <a class="page-link" th:href="@{/admin/students/list(page=${pageNumber})}" th:text=${pageNumber}></a>
                           </li>
                           <li class="page-item" th:classappend="${currentPage==totalPages} ? disabled">
-                            <a class="page-link" th:href="@{/students/list(page=${currentPage+1})}">Siguiente</a>
+                            <a class="page-link" th:href="@{/admin/students/list(page=${currentPage+1})}">Siguiente</a>
                           </li>
                         </ul>
                       </nav>

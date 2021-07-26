@@ -87,7 +87,7 @@ public class StudentController {
 		
 		this.studentRepository.save(student);
 		
-		return "redirect:list";
+		return "redirect:/admin/students/list";
 	}
 
 	@GetMapping("edit/{id}")
@@ -131,7 +131,7 @@ public class StudentController {
 
 		// get all students ( with update)
 		model.addAttribute("students", this.studentRepository.findAll());
-		return "redirect:/students/list";
+		return "redirect:/admin/students/list";
 	}
 
 	@GetMapping("delete/{id}")
@@ -143,7 +143,7 @@ public class StudentController {
 		this.studentRepository.delete(student);
 		
 		model.addAttribute("students", this.studentRepository.findAll());
-		return "redirect:/students/list";
+		return "redirect:/admin/students/list";
 
 	}
 }

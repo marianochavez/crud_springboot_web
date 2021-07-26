@@ -25,24 +25,18 @@ public class Course {
 	@Max(value = 9999, message = "El numero no puede ser mayor a 9999.")
 	@Column(name = "number",unique = true, nullable = false, length = 4)
 	private int number;
+	
+	@Column(name = "title", nullable = false, length = 200)
+	private String title;
 
-	@Column(name = "description", nullable = false, length = 200)
+	@Column(name = "description", nullable = false, length = 500)
 	private String description;
+	
 
 	@ManyToMany(targetEntity = Student.class, mappedBy = "courses", cascade = { CascadeType.PERSIST, CascadeType.DETACH,
 			CascadeType.MERGE, CascadeType.REFRESH })
 	private List<Student> students;
 
-	public Course() {
-		super();
-	}
-
-	public Course(int number, String description, List<Student> students) {
-		super();
-		this.number = number;
-		this.description = description;
-		this.students = students;
-	}
 
 	public long getId() {
 		return id;
@@ -75,5 +69,17 @@ public class Course {
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	
+	
+	
 
 }

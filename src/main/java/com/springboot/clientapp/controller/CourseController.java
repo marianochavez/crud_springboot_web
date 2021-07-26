@@ -69,7 +69,7 @@ public class CourseController {
 		}
 
 		this.courseRepository.save(course);
-		return "redirect:list";
+		return "redirect:/admin/courses/list";
 	}
 
 	@GetMapping("edit/{id}")
@@ -94,7 +94,7 @@ public class CourseController {
 
 		// get all courses ( with update)
 		model.addAttribute("courses", this.courseRepository.findAll());
-		return "redirect:/courses/list";
+		return "redirect:/admin/courses/list";
 	}
 
 	@GetMapping("delete/{id}")
@@ -109,7 +109,7 @@ public class CourseController {
 				this.courseRepository.deleteById(id);
 
 			} else {
-				String message = "No se puede eliminar el curso #" + id + " - " + course.get().getNumber() + ": " + course.get().getDescription() +", contiene estudiantes inscriptos.";
+				String message = "No se puede eliminar el curso #" + id + " - " + course.get().getNumber() + ": " + course.get().getTitle() +", contiene estudiantes inscriptos.";
 				model.addAttribute("message",message);
 				return "course/error-course";
 			}
@@ -120,6 +120,6 @@ public class CourseController {
 
 		}
 		
-		return "redirect:/courses/list";
+		return "redirect:/admin/courses/list";
 	}
 }

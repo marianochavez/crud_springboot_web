@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:include="includes/base :: head"></head>
-  <head>
-    <title>Cursos</title>
+<head>
+  	<meta charset="utf-8">
+  	<title>Progrademia | Academia de Programacion</title>
   </head>
 
   <body>
@@ -16,7 +17,7 @@
       <div class="card">
         <div class="card-body">
           <h2 class="text-danger" th:text="${message}"></h2>
-          <a class="btn btn-primary my-5" th:href="@{/courses/list}">Volver</a>
+          <a class="btn btn-primary my-5" th:href="@{/admin/courses/list}">Volver</a>
         </div>
       </div>
     </div>

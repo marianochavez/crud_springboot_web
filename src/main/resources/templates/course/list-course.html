@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:include="includes/base :: head"></head>
   <head>
-    <title>Cursos</title>
+  	<meta charset="utf-8">
+  	<title>Progrademia | Academia de Programacion</title>
   </head>
 
   <body>
@@ -17,7 +18,7 @@
       <div class="card">
         <div class="card-body">
           <div class="row" style="float: right">
-            <a href="/courses/showForm" class="btn btn-success"
+            <a th:href="@{/admin/courses/showForm}" class="btn btn-success"
               ><i class="fas fa-plus ml-2"> Agregar Curso</i></a
             >
           </div>
@@ -30,7 +31,8 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Número</th>
+                      <th>Comisión</th>
+                      <th>Título</th>
                       <th>Descripción</th>
                       <th>Editar</th>
                       <th>Eliminar</th>
@@ -40,17 +42,18 @@
                     <tr th:each="course : ${courses}">
                       <td th:text="${course.id}"></td>
                       <td th:text="${course.number}"></td>
+                      <td th:text="${course.title}"></td>
                       <td th:text="${course.description}"></td>
                       <td>
                         <a
-                          th:href="@{/courses/edit/{id}(id=${course.id})}"
+                          th:href="@{/admin/courses/edit/{id}(id=${course.id})}"
                           class="btn btn-primary"
                           ><i class="fas fa-edit ml-2"></i
                         ></a>
                       </td>
                       <td>
                         <a
-                          th:href="@{/courses/delete/{id}(id=${course.id})}"
+                          th:href="@{/admin/courses/delete/{id}(id=${course.id})}"
                           class="btn btn-danger"
                           ><i class="fas fa-trash ml-2"></i
                         ></a>
@@ -67,7 +70,7 @@
                       >
                         <a
                           class="page-link"
-                          th:href="@{/students/list(page=${currentPage-1})}"
+                          th:href="@{/admin/courses/list(page=${currentPage-1})}"
                           >Anterior</a
                         >
                       </li>
@@ -79,7 +82,7 @@
                       >
                         <a
                           class="page-link"
-                          th:href="@{/students/list(page=${pageNumber})}"
+                          th:href="@{/admin/courses/list(page=${pageNumber})}"
                           th:text="${pageNumber}"
                         ></a>
                       </li>
@@ -89,7 +92,7 @@
                       >
                         <a
                           class="page-link"
-                          th:href="@{/students/list(page=${currentPage+1})}"
+                          th:href="@{/admin/courses/list(page=${currentPage+1})}"
                           >Siguiente</a
                         >
                       </li>

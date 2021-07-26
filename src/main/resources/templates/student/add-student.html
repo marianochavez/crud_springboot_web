@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:include="includes/base :: head"></head>
-  <head><title>Nuevo Estudiante</title></head>
+<head>
+  	<meta charset="utf-8">
+  	<title>Progrademia | Academia de Programacion</title>
+  </head>
 
   <body>
     <!-- NAVBAR -->
@@ -17,7 +20,7 @@
           <div class="col-md-10">
             <form
               action="#"
-              th:action="@{/students/add}"
+              th:action="@{/admin/students/add}"
               th:object="${student}"
               method="post"
             >
@@ -96,7 +99,7 @@
                         <option value="">Ninguno</option>
                         <option th:each="course : ${courses}"
                                 th:value="${course.id}"
-                                th:text="${course.number} + ' : ' + ${course.description}"></option>
+                                th:text="${course.number} + ' : ' + ${course.title}"></option>
                     </select>
                 </div>
 

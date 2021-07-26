@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="ISO-8859-1">
-    <title>Registration Success</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-</head>
-<body>
-    <div class="container text-center">
-        <h3>You have signed up successfully!</h3>
-        <h4><a th:href="@{/login}">Click here to Login</a></h4>
+  <head th:include="includes/base :: head"></head>
+  <head>
+  	<meta charset="utf-8">
+  	<title>Exito | Progrademia</title>
+  </head>
+  <body>
+   <!-- NAVBAR -->
+   <div class="table-info">
+    <th:block th:include="includes/base :: header"></th:block>
+   </div>
+   <!-- CONTENT -->
+    <div class="container text-center" style="padding-top: 150px;margin-bottom: 300px;">
+        <h3>Te has registrado correctamente!</h3>
+        <h4><a th:href="@{/login}">Click para Ingresar</a></h4>
     </div>
-     
+      <!-- FOOTER -->
+    <footer th:replace="includes/base :: footer"></footer>
+    
+    <th:block th:include="includes/base :: assets"></th:block>
 </body>
 </html>
