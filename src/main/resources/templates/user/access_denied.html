@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="includes/base :: head"></head>
+  <head>
+  	<meta charset="utf-8">
+  	<title>Permiso Denegado | Progrademia</title>
+  </head>
+  <body>
+   <!-- NAVBAR -->
+   <div class="table-info">
+    <th:block th:include="includes/base :: header"></th:block>
+   </div>
+   <!-- CONTENT -->
+    <div class="container text-center text-danger" style="padding-top: 150px;margin-bottom: 300px;">
+        <h3>No tienes los permisos necesarios. Habla con el administrador.</h3>
+        <h4><a th:href="@{/}" class="btn btn-primary">Volver</a></h4>
+    </div>
+      <!-- FOOTER -->
+    <footer th:replace="includes/base :: footer"></footer>
+    
+    <th:block th:include="includes/base :: assets"></th:block>
+</body>
+</html>

@@ -57,6 +57,11 @@ public class IndexController {
 	    }
 	    return "redirect:/login?logout";
 	}
+	
+	@GetMapping("access-denied")
+	public String accessDenied() {
+		return "user/access_denied";
+	}
 
 	@GetMapping("/")
 	public String index() {
