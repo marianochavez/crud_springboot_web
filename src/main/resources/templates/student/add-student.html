@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:include="includes/base :: head"></head>
-<head>
-  	<meta charset="utf-8">
-  	<title>Progrademia | Academia de Programacion</title>
+  <head>
+    <meta charset="utf-8" />
+    <title>Progrademia | Academia de Programacion</title>
   </head>
 
   <body>
@@ -13,108 +13,117 @@
     </div>
 
     <!-- CONTENT -->
-    <div class="container my-5" style="padding-top: 150px;">
-      <h3>Nuevo Usuario</h3>
-      <div class="card">
-        <div class="card-body">
-          <div class="col-md-10">
-            <form
-              action="#"
-              th:action="@{/admin/students/add}"
-              th:object="${student}"
-              method="post"
-            >
-              <div class="row">
-                <div class="form-group col-md-8">
-                  <label for="name" class="col-form-label">Nombre</label>
-                  <input
-                    type="text"
-                    th:field="*{firstName}"
-                    class="form-control"
-                    id="firstName"
-                    placeholder="Nombre"
-                    required
-                  />
-                  <span
-                    th:if="${#fields.hasErrors('firstName')}"
-                    th:errors="*{firstName}"
-                    class="text-danger"
-                  ></span>
-                </div>
+    <div class="container">
+      <div class="base-form">
+        <h1>Nuevo Estudiante</h1>
+        <hr />
+        <form
+          action="#"
+          th:action="@{/admin/students/add}"
+          th:object="${student}"
+          method="post"
+        >
+          <div class="row">
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input
+                type="text"
+                th:field="*{firstName}"
+                class="form-control"
+                id="firstName"
+                placeholder="Nombre"
+                required
+              />
+              <span
+                th:if="${#fields.hasErrors('firstName')}"
+                th:errors="*{firstName}"
+                class="text-danger"
+              ></span>
+            </div>
 
-                <div class="form-group col-md-8">
-                  <label for="name" class="col-form-label">Apellido</label>
-                  <input
-                    type="text"
-                    th:field="*{lastName}"
-                    class="form-control"
-                    id="lastName"
-                    placeholder="Apellido"
-                    required
-                  />
-                  <span
-                    th:if="${#fields.hasErrors('lastName')}"
-                    th:errors="*{lastName}"
-                    class="text-danger"
-                  ></span>
-                </div>
+            <div class="form-group">
+              <label for="name">Apellido</label>
+              <input
+                type="text"
+                th:field="*{lastName}"
+                class="form-control"
+                id="lastName"
+                placeholder="Apellido"
+                required
+              />
+              <span
+                th:if="${#fields.hasErrors('lastName')}"
+                th:errors="*{lastName}"
+                class="text-danger"
+              ></span>
+            </div>
 
-                <div class="form-group col-md-8">
-                  <label for="email" class="col-form-label">Email</label>
-                  <input
-                    type="text"
-                    th:field="*{email}"
-                    class="form-control"
-                    id="email"
-                    placeholder="example@email.com"
-                    required
-                  />
-                  <span
-                    th:if="${#fields.hasErrors('email')}"
-                    th:errors="*{email}"
-                    class="text-danger"
-                  ></span>
-                </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                th:field="*{email}"
+                class="form-control"
+                id="email"
+                placeholder="example@email.com"
+                required
+              />
+              <span
+                th:if="${#fields.hasErrors('email')}"
+                th:errors="*{email}"
+                class="text-danger"
+              ></span>
+            </div>
 
-                <div class="form-group col-md-8">
-                  <label for="phoneNo" class="col-form-label">Teléfono</label>
-                  <input
-                    type="text"
-                    th:field="*{phoneNo}"
-                    class="form-control"
-                    id="phoneNo"
-                    placeholder="542619999999"
-                    required
-                  />
-                  <span
-                    th:if="${#fields.hasErrors('phoneNo')}"
-                    th:errors="*{phoneNo}"
-                    class="text-danger"
-                  ></span>
-                </div>
+            <div class="form-group">
+              <label for="phoneNo">Teléfono</label>
+              <input
+                type="text"
+                th:field="*{phoneNo}"
+                class="form-control"
+                id="phoneNo"
+                placeholder="542619999999"
+                required
+              />
+              <span
+                th:if="${#fields.hasErrors('phoneNo')}"
+                th:errors="*{phoneNo}"
+                class="text-danger"
+              ></span>
+            </div>
 
-                <div class="form-group col-md-8">
-                  <label for="course" class="col-form-label">Curso</label>
-                    <select class="form-control" th:field="*{courses}" id="course" size="4" multiple>
-                        <option value="">Ninguno</option>
-                        <option th:each="course : ${courses}"
-                                th:value="${course.id}"
-                                th:text="${course.number} + ' : ' + ${course.title}"></option>
-                    </select>
-                </div>
+            <div class="form-group">
+              <label for="course">Curso</label>
+              <select
+                class="form-control"
+                th:field="*{courses}"
+                id="course"
+                size="4"
+                multiple
+              >
+                <option value="">Ninguno</option>
+                <option
+                  th:each="course : ${courses}"
+                  th:value="${course.id}"
+                  th:text="${course.number} + ' : ' + ${course.title}"
+                ></option>
+              </select>
+            </div>
 
-                <div class="col-md-6 mt-3">
-                  <input type="submit" class="btn btn-primary mt-3" value="Crear" />
-                </div>
-              </div>
-            </form>
+            <div class="form-group">
+              <input
+                type="submit"
+                class="btn btn-block btn-primary"
+                value="Crear"
+              />
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     <!-- FOOTER -->
     <footer th:replace="includes/base :: footer"></footer>
-    
+
     <th:block th:include="includes/base :: assets"></th:block>
   </body>
 </html>

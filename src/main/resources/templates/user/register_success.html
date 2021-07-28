@@ -11,9 +11,11 @@
     <th:block th:include="includes/base :: header"></th:block>
    </div>
    <!-- CONTENT -->
-    <div class="container text-center" style="padding-top: 150px;margin-bottom: 300px;">
+    <div class="container text-center">
+      <div class="base-form" style="margin-bottom: 35rem;">
         <h3>Te has registrado correctamente!</h3>
         <h4><a th:href="@{/login}">Click para Ingresar</a></h4>
+      </div>
     </div>
       <!-- FOOTER -->
     <footer th:replace="includes/base :: footer"></footer>

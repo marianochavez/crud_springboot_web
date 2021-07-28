@@ -2,72 +2,98 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:include="includes/base :: head"></head>
   <head>
-  	<meta charset="utf-8">
-  	<title>Registrarse | Progrademia</title>
+    <meta charset="UTF-8" />
+    <title>Registrarse | Progrademia</title>
   </head>
   <body>
-   <!-- NAVBAR -->
-   <div class="table-info">
-    <th:block th:include="includes/base :: header"></th:block>
-   </div>
-   <!-- CONTENT -->
-    <div class="container text-center" style="padding-top: 150px;margin-bottom: 300px;">
-        <div>
-            <h1>User Registration - Sign Up</h1>
-        </div>
-        <form th:action="@{/process_register}" th:object="${user}"
-            method="post" style="max-width: 600px; margin: 0 auto;">
-        <div class="m-3">
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Email: </label>
-                <div class="col-8">
-                    <input type="email" th:field="*{email}" class="form-control" required />
-                </div>
-            </div>
-             
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Contraseña: </label>
-                <div class="col-8">
-                    <input type="password" th:field="*{password}" class="form-control"
-                            required minlength="6" maxlength="10"/>
-                </div>
-            </div>
-             
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Nombre: </label>
-                <div class="col-8">
-                    <input type="text" th:field="*{firstName}" class="form-control"
-                            required minlength="2" maxlength="20"/>
-                </div>
-            </div>
-             
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Apellido: </label>
-                <div class="col-8">
-                    <input type="text" th:field="*{lastName}" class="form-control"
-                            required minlength="2" maxlength="20" />
-                </div>
-            </div>
-            
-            <div class="form-group col-md-8">
-                  <label for="course" class="col-form-label">Rol: </label>
-                    <select class="form-control" th:field="*{role}" id="role" size="4" multiple>
-						<option th:each="role : ${T(com.springboot.clientapp.entity.Role).values()}"
-					            th:value="${role}"
-					            th:text="${role}">
-					    </option>
-                    </select>
-                </div>
-             
-            <div>
-                <button type="submit" class="btn btn-primary">Registrarme</button>
-            </div>
-        </div>
-        </form>
+    <!-- NAVBAR -->
+    <div class="table-info">
+      <th:block th:include="includes/base :: header"></th:block>
     </div>
-          <!-- FOOTER -->
-    <footer th:replace="includes/base :: footer"></footer>
+    <!-- CONTENT -->
+    <div class="container">
+      <div class="base-form">
+          <h2>Registrarse</h2>
+          <hr>
+        <form
+          th:action="@{/process_register}"
+          th:object="${user}"
+          method="post"
+        >
+          <div class="form-group">
+            <label>Email: </label>
+            <input
+              type="email"
+              th:field="*{email}"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Contraseña: </label>
+              <input
+                type="password"
+                th:field="*{password}"
+                class="form-control"
+                required
+                minlength="6"
+                maxlength="10"
+              />
+          </div>
+
+          <div class="form-group">
+            <label>Nombre: </label>
     
+              <input
+                type="text"
+                th:field="*{firstName}"
+                class="form-control"
+                required
+                minlength="2"
+                maxlength="20"
+              />
+          </div>
+
+          <div class="form-group">
+            <label>Apellido: </label>
+              <input
+                type="text"
+                th:field="*{lastName}"
+                class="form-control"
+                required
+                minlength="2"
+                maxlength="20"
+              />
+          </div>
+
+          <div class="form-group">
+            <label for="course">Rol: </label>
+            <select
+              class="form-control"
+              th:field="*{role}"
+              id="role"
+              size="2"
+              multiple
+            >
+              <option
+                th:each="role : ${T(com.springboot.clientapp.entity.Role).values()}"
+                th:value="${role}"
+                th:text="${role}"
+              ></option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-primary">Registrarme</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer th:replace="includes/base :: footer"></footer>
+
     <th:block th:include="includes/base :: assets"></th:block>
-</body>
+  </body>
 </html>

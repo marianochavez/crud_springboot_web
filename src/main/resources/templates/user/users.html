@@ -8,19 +8,11 @@
     <th:block th:include="includes/base :: header"></th:block>
   </div>
    <!-- CONTENT -->
-<div class="container text-center" style="padding-top: 150px;margin-bottom: 300px;">
-    <div>
-        <form th:action="@{/logout}" method="post">
-            <p>
-                Bienvenido <b>[[${#request.userPrincipal.principal.fullName}]]</b>
-            </p>
-            <input type="submit" value="Sign Out" />
-        </form>
-    </div>
+<div class="container">
+    <div class="text-center table-content">
     <div>
         <h1>Lista de Usuarios</h1>
     </div>
-     
     <div>
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
@@ -42,6 +34,7 @@
                 </tr>
             </tbody>
         </table>
+    </div>
     </div>
 </div>
 <!-- FOOTER -->

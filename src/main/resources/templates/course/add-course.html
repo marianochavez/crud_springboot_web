@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="includes/base :: head"></head>
-<head>
-  	<meta charset="utf-8">
-  	<title>Progrademia | Academia de Programacion</title>
+  <head th:include="includes/base :: head"></head>
+  <head>
+    <meta charset="utf-8" />
+    <title>Progrademia | Academia de Programacion</title>
   </head>
 
   <body>
@@ -13,81 +13,81 @@
     </div>
 
     <!-- CONTENT -->
-    <div class="container my-5" style="padding-top: 150px;"> 
-      <h3>Nuevo Curso</h3>
-      <div class="card">
-        <div class="card-body">
-          <div class="col-md-10">
-            <form
-              action="#"
-              th:action="@{/admin/courses/add}"
-              th:object="${course}"
-              method="post"
-            >
-              <div class="row">
-                <div class="form-group col-md-8">
-                  <label for="number" class="col-form-label">Número</label>
-                  <input
-                    type="text"
-                    th:field="*{number}"
-                    class="form-control"
-                    id="number"
-                    placeholder="NÃºmero"
-                    required
-                  />
-                  <span
-                    th:if="${#fields.hasErrors('number')}"
-                    th:errors="*{number}"
-                    class="text-danger"
-                  ></span>
-                </div>
-                
-                <div class="form-group col-md-8">
-                  <label for="description" class="col-form-label">Título</label>
-                  <input
-                    type="text"
-                    th:field="*{title}"
-                    class="form-control"
-                    id="title"
-                    placeholder="Título"
-                    required
-                  />
-                  <span
-                    th:if="${#fields.hasErrors('title')}"
-                    th:errors="*{title}"
-                    class="text-danger"
-                  ></span>
-                </div>
+    <div class="container">
+      <div class="base-form">
+        <h1>Nuevo Curso</h1>
+        <form
+          th:action="@{/admin/courses/add}"
+          th:object="${course}"
+          method="post"
+        >
+          <div class="row">
+            <div class="form-group">
+              <label for="number">Número</label>
+              <input
+                type="text"
+                th:field="*{number}"
+                class="form-control"
+                id="number"
+                placeholder="NÃºmero"
+                required
+              />
+              <span
+                th:if="${#fields.hasErrors('number')}"
+                th:errors="*{number}"
+                class="text-danger"
+              ></span>
+            </div>
 
-                <div class="form-group col-md-8">
-                  <label for="description" class="col-form-label">Descripción</label>
-                  <input
-                    type="text"
-                    th:field="*{description}"
-                    class="form-control"
-                    id="description"
-                    placeholder="Descripción"
-                    required
-                  />
-                  <span
-                    th:if="${#fields.hasErrors('description')}"
-                    th:errors="*{description}"
-                    class="text-danger"
-                  ></span>
-                </div>
+            <div class="form-group">
+              <label for="description">Título</label>
+              <input
+                type="text"
+                th:field="*{title}"
+                class="form-control"
+                id="title"
+                placeholder="Título"
+                required
+              />
+              <span
+                th:if="${#fields.hasErrors('title')}"
+                th:errors="*{title}"
+                class="text-danger"
+              ></span>
+            </div>
 
-                <div class="col-md-6 text-center">
-                  <input type="submit" class="btn btn-primary mt-3" value="Crear" />
-                </div>
-              </div>
-            </form>
+            <div class="form-group">
+              <label for="description">Descripción</label>
+              <textarea
+                type="text"
+                th:field="*{description}"
+                class="form-control"
+                id="description"
+                rows="4"
+                placeholder="Descripción"
+                required
+              />
+              <span
+                th:if="${#fields.hasErrors('description')}"
+                th:errors="*{description}"
+                class="text-danger"
+              ></span>
+            </div>
+
+            <div class="text-center">
+              <input
+                type="submit"
+                class="btn btn-block btn-primary"
+                value="Crear"
+              />
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     <!-- FOOTER -->
     <footer th:replace="includes/base :: footer"></footer>
-    
+
     <th:block th:include="includes/base :: assets"></th:block>
   </body>
 </html>

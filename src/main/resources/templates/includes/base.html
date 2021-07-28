@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
     <script src="../static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" th:src="@{/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"></script>
+
+    <link rel="icon" th:href="@{/img/favicon.ico}" href="../static/img/favicon.ico" type="image/x-icon">
   </head>
   <body>
     <th:block th:fragment="header">
@@ -38,26 +40,18 @@
                     <ul class="nav navbar-nav">
                         <li><a th:href="@{/}" class="nav-link">Home</a></li>
                         
-                        <li><a th:href="@{/#about}" class="nav-link">Cursos</a></li>
+                        <li sec:authorize="!hasRole('ROLE_ADMIN')"><a th:href="@{/#about}" class="nav-link">Cursos</a></li>
                         
-                        <li><a th:href="@{/#what-we-do}" class="nav-link">Nosotros</a></li>
+                        <li sec:authorize="!hasRole('ROLE_ADMIN')"><a th:href="@{/#what-we-do}" class="nav-link">Nosotros</a></li>
                         
-                        <li><a th:href="@{/#contact}" class="nav-link">Contacto</a></li>
+                        <li sec:authorize="!hasRole('ROLE_ADMIN')"><a th:href="@{/#contact}" class="nav-link">Contacto</a></li>
                         
-               
-                        
-                        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item dropdown">
-					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					          Admin
-					        </a>
-	                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                        	<a th:href="@{/admin/courses/list}" class="dropdown-item" >Cursos</a> <br>
-	                        	<a th:href="@{/admin/students/list}" class="dropdown-item" >Estudiantes</a> <br>
-	                        	<a th:href="@{/admin/users/list}" class="dropdown-item" >Usuarios</a>
-	                        </div>
-                        </li>
-                        
-                        <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}" class="nav-link" >Ingresar</a></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/courses/list}" class="nav-link" >Cursos</a></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/students/list}" class="nav-link" >Estudiantes</a></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/users/list}" class="nav-link" >Usuarios</a></li>
+	                 
+                
+                        <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}" class="nav-link " >Ingresar</a></li>
                         <li sec:authorize="!isAuthenticated()"><a th:href="@{/register}" class="nav-link" >Registrarse</a></li>
                         <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" class="nav-link" >Desconectarse</a></li>
                     </ul>
@@ -76,7 +70,7 @@
                 <div class="copyright-text">
                     <p>Copyright &copy; 2021 
                     
-                    - Design: Coppola | De Moraiz | Chavez- Comisión 2112 </p>
+                    - Design: Coppola | De Moraiz | Chavez - Comisión 2112 </p>
                 </div>
             </div>
             <div class="col-md-6">

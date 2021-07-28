@@ -2,40 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:include="includes/base :: head"></head>
   <head>
-  	<meta charset="utf-8">
-  	<title>Login | Progrademia</title>
+    <meta charset="utf-8" />
+    <title>Login | Progrademia</title>
   </head>
   <body>
-   <!-- NAVBAR -->
-   <div class="table-info">
-    <th:block th:include="includes/base :: header"></th:block>
-   </div>
-   <!-- CONTENT -->
-   <div class="text-center" style="padding-top: 150px;margin-bottom: 300px;">
-        <form name="f" th:action="@{/login}" method="post">               
-            <fieldset>
-                <legend>Inicie sesión</legend>
-                <div th:if="${param.error}" class="alert alert-error">    
-                    Email y/o contraseña incorrectos.
+    <!-- NAVBAR -->
+    <div class="table-info">
+      <th:block th:include="includes/base :: header"></th:block>
+    </div>
+    <!-- CONTENT -->
+
+    <div class="container">
+          <div class="base-form">
+            <h1>Iniciar sesión</h1>
+            <hr>
+            <form name="f" th:action="@{/login}" method="post">
+              <div>
+                <div th:if="${param.error}" class="alert alert-danger">
+                  Email y/o contraseña incorrectos.
                 </div>
-                <div th:if="${param.logout}" class="alert alert-success"> 
-                    Te has desconectado.
+                <div th:if="${param.logout}" class="alert alert-success">
+                  Te has desconectado.
                 </div>
-                
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email"/> <br>     
-                  
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password"/>    
-                <div class="form-actions">
-                    <button type="submit" class="btn">Ingresar</button>
+
+                <div class="form-group">
+                    <label for="email" >Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required/>
+                    <span><small class="text-danger">Test admin: admin@gmail.com</small></span>
                 </div>
-            </fieldset>
-        </form>
-       </div>
-      <!-- FOOTER -->
-    <footer th:replace="includes/base :: footer"></footer>
+
+                <div class="form-group">
+                  <label for="password"  >Contraseña</label>
+                    <input type="password" id="password" name="password" class="form-control" required/>
+                    <span><small class="text-danger">Contraseña: qweasdzxc</small></span>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-block btn-primary">Ingresar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+    </div>
     
+    <!-- FOOTER -->
+    <footer th:replace="includes/base :: footer"></footer>
+
     <th:block th:include="includes/base :: assets"></th:block>
   </body>
 </html>

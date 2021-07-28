@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:include="includes/base :: head"></head>
-<head>
-  	<meta charset="utf-8">
-  	<title>Progrademia | Academia de Programacion</title>
+  <head>
+    <meta charset="utf-8" />
+    <title>Progrademia | Academia de Programacion</title>
   </head>
 
   <body>
@@ -13,17 +13,24 @@
     </div>
 
     <!-- CONTENT -->
-    <div class="container my-5 text-center" style="padding-top: 150px;">
-      <div class="card">
-        <div class="card-body">
+    <div class="container text-center">
+      <div class="table-content">
+        <div class="row">
           <h2 class="text-danger" th:text="${message}"></h2>
-          <a class="btn btn-primary my-5" th:href="@{/admin/courses/list}">Volver</a>
+        </div>
+        <div class="row">
+          <a
+            id="btnerror"
+            class="btn btn-primary"
+            th:href="@{/admin/courses/list}"
+            >Volver</a
+          >
         </div>
       </div>
     </div>
     <!-- FOOTER -->
     <footer th:replace="includes/base :: footer"></footer>
-    
+
     <th:block th:include="includes/base :: assets"></th:block>
   </body>
 </html>
