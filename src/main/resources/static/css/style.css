@@ -3,6 +3,12 @@
   padding: 0;
   font-family: "Open Sans", arial, sans-serif;
 }
+
+body{
+  position: relative;
+  min-height: 100vh;
+}
+
 ul {
   list-style: none;
 }
@@ -195,15 +201,8 @@ bootstrap.min.css.navbar-toggle {
   border-radius: 4px;
 }
 
-@media (min-width: 768px) {
-  .header .navbar-brand {
-    padding-left: 0;
-  }
-  .navbar-nav {
-    float: right;
-  }
-}
-@media (max-width: 480px) {
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
   .page-section h1 {
     font-size: 3em;
   }
@@ -213,6 +212,45 @@ bootstrap.min.css.navbar-toggle {
   .page-section p {
     font-size: 1em;
     margin: 0 0 20px;
+  }
+  
+  .base-form {
+    width: 100% !important;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .base-form {
+    width: 100%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .header .navbar-brand {
+    padding-left: 0;
+  }
+  .navbar-nav {
+    float: right;
+  }
+  
+  .base-form {
+    width: 100%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .base-form {
+    width: 100%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .base-form {
+    width: 100%;
   }
 }
 
@@ -660,9 +698,16 @@ ul.cd-hero-slider {
 
 /* FOOTER */
 
+#footer-div{
+  padding-bottom: 8rem;
+}
+
 footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   background-color: #202628;
-  padding: 20px;
+  padding: 10px;
 }
 
 footer p {
@@ -1015,8 +1060,17 @@ body.lb-disable-scrolling {
   margin-bottom: 20rem;
 }
 
+.table-content .table-overflow{
+  overflow-x: auto;
+}
+
 #btnerror{
 	margin-top: 30px;
 	margin-bottom: 15rem;
 
+}
+
+#disabled-pag{
+  pointer-events: none;
+  color: #ccc;
 }
